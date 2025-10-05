@@ -34,21 +34,7 @@ git clone https://github.com/yourname/my_app_name.git
 cd my_app_name
 ```
 
-
-### 2. 🔐 Rails の credentials（master.key）を新規発行
-
-テンプレートには **`config/master.key` / `config/credentials.yml.enc` は含まれていません**。
-新しいアプリとして利用する際は、必ず新規発行してください。
-
-```bash
-rm -f config/master.key config/credentials.yml.enc
-EDITOR="vim" bin/rails credentials:edit
-```
-
-※ Vim の代わりに `code`（VSCode）や `nano` も使用可能です。
-
-
-### 3. Git の紐付け確認（必要なら初期化）
+### 2. Git の紐付け確認（必要なら初期化）
 
 Template から作ったリポジトリには初期 commit が残っています。
 必要に応じてリポジトリ名や origin を変更して管理してください。
@@ -61,18 +47,32 @@ git add .
 git commit -m "Initial commit from my_rails7_2_starter"
 ```
 
-
-## 🚀 Docker でアプリを起動
+## セットアップ
+### 🚀 Docker でアプリを起動
 
 ```bash
 docker compose build
 docker compose run --rm web yarn install
-docker compose up -d
+docker compose up
 ```
 
 ブラウザで以下にアクセスして表示されればセットアップ完了です：
 
 👉 [http://localhost:3000](http://localhost:3000)
+
+
+### 🔐 Rails の credentials（master.key）を新規発行
+
+テンプレートには **`config/master.key` / `config/credentials.yml.enc` は含まれていません**。
+新しいアプリとして利用する際は、必ず新規発行してください。
+
+```bash
+rm -f config/master.key config/credentials.yml.enc
+docker compose run --rm web bin/rails credentials:edit
+
+git add .
+git commit -m "Generate master key"
+```
 
 
 ## ✅ よくあるカスタマイズ（任意）
