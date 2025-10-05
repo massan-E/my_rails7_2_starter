@@ -66,6 +66,7 @@ git commit -m "Initial commit from my_rails7_2_starter"
 
 ```bash
 docker compose build
+docker compose run --rm web yarn install
 docker compose up -d
 ```
 
